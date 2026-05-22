@@ -1,0 +1,106 @@
+/* style-pos.css */
+#pos-screen { height: 100vh; display: flex; flex-direction: column; }
+
+.operation-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 0;
+    /* パネル全体を縦に広げて、中身を整列させる */
+    height: 100%; 
+}
+
+.view-stack {
+    flex: 1; /* ここを可変にすることで、下の bottom-actions を押し下げます */
+    overflow-y: auto; /* 中身が増えた場合はここだけスクロールさせる */
+    min-height: 0;
+}
+
+.customer-display {
+    background: #000;
+    height: 100px;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #0f0;
+    font-size: 1.8rem;
+}
+
+.main-container { flex: 1; display: flex; padding: 20px; gap: 20px; overflow: hidden; }
+
+.receipt-pane {
+    width: 600px !important;
+    min-width: 600px !important;
+    background: var(--white);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.receipt-list { flex: 1; overflow-y: auto; padding: 10px; }
+
+.receipt-total {
+    padding: 30px 20px;
+    background: #f8fafc;
+    border-top: 4px solid var(--navy-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-val { font-size: 4rem; font-weight: 900; color: var(--navy-dark); }
+
+.operation-panel { flex: 1; display: flex; flex-direction: column; gap: 15px; min-width: 0; }
+
+.mode-selector { display: flex; gap: 10px; }
+.mode-btn {
+    flex: 1; padding: 15px; font-weight: bold; font-size: 1.2rem; cursor: pointer;
+    border-radius: 10px; border: 2px solid var(--navy-dark); background: #fff;
+}
+.mode-btn.active { background: var(--navy-dark); color: #fff; }
+
+.category-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+.cat-btn { padding: 10px 20px; border-radius: 25px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer; }
+.cat-btn.active { background: var(--blue-primary); color: white; }
+
+.item-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+.grid-item {
+    aspect-ratio: 1 / 0.8; background: #fff; border: 1px solid #cbd5e1; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer;
+}
+
+.calculator-container { max-width: 400px; margin: 0 auto; }
+.calc-display {
+    background: #334155; color: #fff; height: 70px; font-size: 2.5rem; text-align: right;
+    padding: 10px 20px; margin-bottom: 10px; border-radius: 10px; display: flex; align-items: center; justify-content: flex-end;
+}
+.numpad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.numpad button { height: 70px; font-size: 1.5rem; border-radius: 10px; border: 1px solid #ccc; background: #fff; cursor: pointer; }
+.calc-enter { grid-column: span 3; background: var(--blue-primary) !important; color: white !important; }
+
+.bottom-actions {
+    display: flex;
+    gap: 15px;
+    height: 90px;
+    margin-top: auto; /* 念のためマージンでも押し下げを確定させる */
+    padding-top: 10px;
+}
+/* ボタンのスタイル微調整（終了ボタンも他のボタンと高さを合わせる） */
+.bottom-actions button {
+    flex: 1;
+    border-radius: 15px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bottom-actions .danger { background: var(--danger); }
+.bottom-actions .success { background: var(--success); }

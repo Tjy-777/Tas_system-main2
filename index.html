@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasシステム - ログイン</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-login.css">
+</head>
+<body>
+    <div id="login-screen" class="screen">
+        <div class="login-card">
+            <div class="login-header">
+                <h1 class="brand-title">Tas SYSTEM</h1>
+                <p class="brand-subtitle">レジ・担当者登録</p>
+            </div>
+            
+            <div class="login-body">
+                <p class="login-instruction">
+                    社員証のバーコードを読み取るか、<br>
+                    社員番号とパスワードを入力してください
+                </p>
+                
+                <div class="input-group">
+                    <input type="text" id="emp-id" class="flat-input" placeholder="社員番号" inputmode="email">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="emp-pass" placeholder="パスワード">
+                </div>
+                
+                <button id="btn-login" class="btn-primary">ログイン</button>
+            </div>
+        </div>
+
+        <script src="js/login.js"></script>
+    </div>
+</body>
+</html>

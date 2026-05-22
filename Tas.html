@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スーパーPOSシステム - 操作画面</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-pos.css">
+</head>
+<body>
+    <div id="pos-screen" class="screen">
+        <header class="customer-display">
+            <div class="display-left">
+                <div id="clerk-label">担当: ----</div>
+                <div id="target-item-name">ｲﾗｯｼｬｲﾏｾ</div>
+            </div>
+            <div class="display-right">
+                <div id="target-item-price"></div>
+            </div>
+        </header>
+
+        <div class="main-container">
+            <aside class="receipt-pane">
+                <div class="receipt-list" id="receipt-list"></div>
+                <div class="receipt-total">
+                    <span class="label">合計(税込)</span>
+                    <span class="total-val">¥<span id="total-price">0</span></span>
+                </div>
+            </aside>
+
+            <main class="operation-panel">
+                <div class="mode-selector">
+                    <button id="btn-mode-single" class="mode-btn active">単品</button>
+                    <button id="btn-mode-code" class="mode-btn">コードモード</button>
+                    <button id="btn-history" class="mode-btn history-btn">会計履歴</button>
+                </div>
+
+                <div class="view-stack">
+                    <div id="view-single" class="view">
+                        <div class="category-tabs" id="category-tabs">
+                            <button class="cat-btn active" data-category="すべて">すべて</button>
+                            <button class="cat-btn" data-category="野菜">野菜</button>
+                            <button class="cat-btn" data-category="肉・魚">肉・魚</button>
+                            <button class="cat-btn" data-category="飲料">飲料</button>
+                            <button class="cat-btn" data-category="食品">食品</button>
+                            <button class="cat-btn" data-category="その他">その他</button>
+                        </div>
+                        <div class="item-grid" id="item-grid"></div>
+                    </div>
+
+                    <div id="view-code" class="view hidden">
+                        <div class="calculator-container">
+                            <div class="calc-display" id="calc-display"></div>
+                            <div class="numpad">
+                                <button type="button" class="num">7</button>
+                                <button type="button" class="num">8</button>
+                                <button type="button" class="num">9</button>
+                                <button type="button" class="num">4</button>
+                                <button type="button" class="num">5</button>
+                                <button type="button" class="num">6</button>
+                                <button type="button" class="num">1</button>
+                                <button type="button" class="num">2</button><button class="num">3</button>
+                                <button type="button" class="num">0</button>
+                                <button type="button" class="num">00</button>
+                                <button type="button" id="btn-calc-del">削除</button>
+                                <button type="button" id="btn-calc-enter" class="calc-enter">入力 / 確定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bottom-actions">
+                    <button id="btn-clear-all" class="danger">全消去</button>
+                    <button id="btn-checkout" class="success">会 計</button>
+                    <button onclick="handleLogout()" style="background:var(--navy-dark); color:white; border:none; border-radius:12px; cursor:pointer;">ログアウト</button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="history-modal" class="history-modal-overlay hidden">
+        <div class="history-modal-content">
+            <div class="history-modal-header">
+                <h2>売上明細履歴（直近50件）</h2>
+                <button id="btn-close-history" class="history-close-btn">×</button>
+            </div>
+            
+            <div class="history-modal-body">
+                <div class="history-table-wrapper">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th class="col-id">会計ID</th>
+                                <th class="col-date">日時</th>
+                                <th class="col-name">商品名</th>
+                                <th class="col-qty">数量 × 単価</th>
+                                <th class="col-subtotal">小計</th>
+                                <th class="col-method">決済方法</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-list">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
