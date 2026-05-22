@@ -3,93 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>決済 - Tasシステム</title>
-    <link rel="stylesheet" href="css/style.css?v=3">
-    <link rel="stylesheet" href="css/style-checkout.css?v=3">
+    <title>お会計</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-checkout.css">
 </head>
 <body class="checkout-body">
 
-    <div class="customer-display header-display">
-        <div class="display-container">
-            <span id="checkout-display-msg" class="display-text">オシハライ ヲ センタク シテクダサイ</span>
-            <span class="display-amount">合計 ¥<span id="display-total-val">0</span></span>
+    <div class="checkout-top-display">
+        <div class="display-left">
+            <div id="clerk-label-checkout">担当: 1001</div>
+            <div class="display-message">ｵｼﾊﾗｲ ｦ ｾﾝﾀｸ ｼﾃｸﾀﾞｻｲ</div>
+        </div>
+        <div class="display-right">
+            合計 <span id="header-total">¥0</span>
         </div>
     </div>
 
-    <nav class="sub-nav">
-        <button onclick="location.href='Tas.html'" class="back-btn-new">
-            <i class="fa-solid fa-arrow-left"></i> ← 前の画面に戻る
+    <div class="checkout-header">
+        <button class="back-btn" onclick="location.href='Tas.html'">
+            ← レジ画面に戻る
         </button>
-    </nav>
+    </div>
 
     <div class="checkout-container">
         
-        <main class="payment-methods-pane">
-            <div id="method-selection">
-                <div class="payment-grid">
-                    <button class="pay-btn cash" onclick="startCashPayment()">
-                        <span class="btn-label">現金支払い</span>
-                        <span class="btn-sub">Cash</span>
-                    </button>
-                    <button class="pay-btn credit disabled" disabled>
-                        <span class="btn-label">クレジット</span>
-                        <span class="btn-sub">Credit Card</span>
-                    </button>
-                    <button class="pay-btn qr disabled" disabled>
-                        <span class="btn-label">QR決済</span>
-                        <span class="btn-sub">QR Payment</span>
-                    </button>
+        <div class="checkout-receipt-pane">
+            <div class="receipt-list" id="checkout-receipt-list">
                 </div>
+            
+            <div class="checkout-total">
+                <div class="total-label">合計(税込)</div>
+                <div class="total-amount" id="checkout-total-amount">¥0</div>
             </div>
+        </div>
 
-            <div id="cash-payment-pane" class="hidden">
-                <div class="cash-calc-container">
-                    <div class="cash-display-area">
-                        <div class="display-box">
-                            <label>お預かり</label>
-                            <div class="cash-input-window">¥<span id="cash-paid-disp">0</span></div>
-                        </div>
-                        <div class="display-box">
-                            <label>お釣り</label>
-                            <div class="change-window">¥<span id="change-disp">0</span></div>
-                        </div>
-                    </div>
-                    
-                    <div class="numpad">
-                        <button class="num" onclick="pressNum('7')">7</button>
-                        <button class="num" onclick="pressNum('8')">8</button>
-                        <button class="num" onclick="pressNum('9')">9</button>
-                        <button class="num" onclick="pressNum('4')">4</button>
-                        <button class="num" onclick="pressNum('5')">5</button>
-                        <button class="num" onclick="pressNum('6')">6</button>
-                        <button class="num" onclick="pressNum('1')">1</button>
-                        <button class="num" onclick="pressNum('2')">2</button>
-                        <button class="num" onclick="pressNum('3')">3</button>
-                        <button class="num" onclick="pressNum('0')">0</button>
-                        <button class="num" onclick="pressNum('00')">00</button>
-                        <button class="num del" onclick="pressClear()">消去</button>
-                    </div>
-
-                    <div class="cash-footer-actions">
-                        <button class="action-btn back" onclick="showMethods()">戻る</button>
-                        <button id="btn-finish-cash" class="action-btn finish disabled" onclick="finishCashPayment()" disabled>精算確定</button>
-                    </div>
-                </div>
+        <div class="payment-methods-pane">
+            <h3 class="section-title">お支払い方法</h3>
+            
+            <div class="payment-grid">
+                <button class="pay-btn cash" id="btn-pay-cash">
+                    <span>現金支払い</span>
+                    <span style="font-size: 0.9rem; font-weight: normal; color: #065f46;">Cash</span>
+                </button>
+                <button class="pay-btn" id="btn-pay-credit">
+                    <span>クレジット</span>
+                    <span style="font-size: 0.9rem; font-weight: normal; color: #64748b;">Credit Card</span>
+                </button>
+                <button class="pay-btn" id="btn-pay-barcode">
+                    <span>バーコード決済</span>
+                    <span style="font-size: 0.9rem; font-weight: normal; color: #64748b;">Barcode Payment</span>
+                <button class="pay-btn" id="btn-pay-e-money">
+                    <span>電子マネー</span>
+                    <span style="font-size: 0.9rem; font-weight: normal; color: #64748b;">Barcode Payment</span>
+                </button>
             </div>
-        </main>
-
-        <aside class="checkout-receipt-pane">
-            <div class="receipt-header">販売明細</div>
-            <div id="checkout-list" class="receipt-list"></div>
-            <div class="checkout-total-box">
-                <div class="total-row main-total">
-                    <span>合計</span>
-                    <span class="amount">¥<span id="checkout-total-val">0</span></span>
-                </div>
-            </div>
-        </aside>
+        </div>
     </div>
 
-    <script src="js/checkout.js"></script>
+    <script type="module" src="js/checkout.js"></script>
 </body>
 </html>

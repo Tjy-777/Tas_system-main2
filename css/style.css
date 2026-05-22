@@ -266,3 +266,49 @@ body {
     display: inline-block;
     white-space: nowrap; /* 🌟 これを追加：文字を絶対に改行させない */
 }
+
+/* =========================================
+   レシート内の数量変更（＋ / －）ボタン
+   ========================================= */
+.qty-btn {
+    width: 36px;               /* ボタンの横幅を大きく */
+    height: 36px;              /* ボタンの縦幅を大きく */
+    font-size: 1.4rem;         /* ＋ や － の記号を大きく */
+    font-weight: bold;
+    color: #334155;            /* 全体UIに合わせたネイビーグレー */
+    background-color: #f8fafc;
+    border: 2px solid #cbd5e1; /* 押しやすいように少し太めの枠線 */
+    border-radius: 8px;        /* 周りのボタンに合わせた角丸 */
+    cursor: pointer;
+    
+    /* 中の文字をド真ん中に配置 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 4px;             /* ボタンと数字の間に少し隙間を空ける */
+    
+    transition: all 0.15s ease; /* ふんわり変化させる */
+}
+
+/* マウスを乗せた時のデザイン */
+.qty-btn:hover {
+    background-color: #e2e8f0;
+    border-color: #94a3b8;
+    color: #0f172a;
+}
+
+/* クリックして押し込んだ時のデザイン */
+.qty-btn:active {
+    background-color: #cbd5e1;
+    transform: scale(0.92);    /* 押した時に少しだけ縮んで「押した感」を出す */
+}
+
+/* もし数量の「数字」部分も調整したい場合（※該当のクラス名が.qty-val等の場合） */
+.qty-btn + span, 
+span:has(+ .qty-btn) {
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: inline-block;
+    min-width: 24px;
+    text-align: center;
+}

@@ -25,7 +25,7 @@ try {
     // 2. sale_detailsテーブルに保存
     // まずバーコードから「本当のitem_id」を見つけるための準備
     $findItem = $pdo->prepare("SELECT item_id FROM items WHERE barcode = ?");
-    $stmt2 = $pdo->prepare("INSERT INTO sales_details (sale_id, item_id, quantity, selling_price) VALUES (?, ?, ?, ?)");
+    $stmt2 = $pdo->prepare("INSERT INTO sale_details (sale_id, item_id, quantity, selling_price) VALUES (?, ?, ?, ?)");
     
     foreach ($data['cart'] as $item) {
         // バーコードから本来の数値IDを取得
