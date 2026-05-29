@@ -5,6 +5,19 @@ import { Renderer } from './render.js';
 const store = new CartStore();
 let calcInput = "";
 
+// ==========================================
+// 🌟 ブラウザの「戻る」ボタン（ブラウザバック）を禁止する処理
+// ==========================================
+// 現在の画面の状態を履歴にダミーとして追加する
+history.pushState(null, null, location.href);
+
+// ユーザーが「戻る」を押した瞬間をキャッチして、進むのをブロックする
+window.addEventListener('popstate', () => {
+    history.pushState(null, null, location.href);
+    // 必要であれば「レジ操作中は戻れません」などの警告を出すことも可能です
+    // alert("レジ画面からは戻れません。"); 
+});
+
 async function init() {
     try {
         const data = await API.fetchProducts();
