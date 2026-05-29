@@ -2,21 +2,17 @@ import { API } from './api.js';
 import { CartStore } from './store.js';
 import { Renderer } from './render.js';
 
-const store = new CartStore();
-let calcInput = "";
-
 // ==========================================
 // 🌟 ブラウザの「戻る」ボタン（ブラウザバック）を禁止する処理
 // ==========================================
-// 現在の画面の状態を履歴にダミーとして追加する
 history.pushState(null, null, location.href);
 
-// ユーザーが「戻る」を押した瞬間をキャッチして、進むのをブロックする
 window.addEventListener('popstate', () => {
     history.pushState(null, null, location.href);
-    // 必要であれば「レジ操作中は戻れません」などの警告を出すことも可能です
-    // alert("レジ画面からは戻れません。"); 
 });
+
+const store = new CartStore();
+let calcInput = "";
 
 async function init() {
     try {
@@ -148,7 +144,7 @@ function setupEventListeners() {
         sessionStorage.setItem('current_cart', JSON.stringify(store.cart));
 
         // 2. 決済画面へ移動
-        location.href = 'checkout.html';
+        window.location.replace('checkout.html');
     };
 
         window.handleLogout = () => {
@@ -163,7 +159,7 @@ function setupEventListeners() {
             localStorage.removeItem('pos_clerk_id');
             
             // ログイン画面へ戻る
-            location.href = 'index.html';
+            window.location.href = 'index.html';
         }
     };
 // 🌟 会計履歴ポップアップの制御ロジック（スタイル分離版）
@@ -186,7 +182,13 @@ document.getElementById('btn-history').onclick = async () => {
                 const dateStr = `${date.getMonth()+1}/${date.getDate()} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
                 
                 // 決済方法の日本語化
-                let methodText = detail.payment_method === 'cash' ? '現金' : detail.payment_method;
+                const methodNames = {
+                    'cash': '現金',
+                    'credit': 'クレジット',
+                    'qr': 'バーコード決済',
+                    'emoney': '電子マネー'
+                    };
+                let methodText = methodNames[detail.payment_method] || detail.payment_method;
 
                 // インラインstyleを排除し、CSSで定義したclass名を割り当てます
                 tr.innerHTML = `

@@ -1,3 +1,12 @@
+// ==========================================
+// 🌟 ブラウザの「戻る」ボタン（ブラウザバック）を禁止する処理
+// ==========================================
+history.pushState(null, null, location.href);
+
+window.addEventListener('popstate', () => {
+    history.pushState(null, null, location.href);
+});
+
 // js/login.js 決定版
 const btnLogin = document.getElementById('btn-login');
 const empIdInput = document.getElementById('emp-id');
@@ -30,7 +39,7 @@ const login = async () => {
             if (result.success) {
                 localStorage.setItem('pos_clerk_id', id);
                 localStorage.setItem('pos_clerk_name', result.staff_name);
-                window.location.href = 'Tas.html';
+                window.location.replace('Tas.html');
             } else {
                 alert(result.message);
             }
